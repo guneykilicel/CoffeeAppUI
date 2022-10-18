@@ -1,15 +1,17 @@
 import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Constants from "expo-constants";
 import SPACING from "../config/SPACING";
 import { BlurView } from "expo-blur";
 import {Ionicons} from "@expo/vector-icons"
 import colors from '../config/colors';
-import SearchField from "../components/SearchField"
+import SearchField from "../components/SearchField";
+import Categories from "../components/Categories";
 
 const avatar = require("../../assets/avatar.jpg");
 
 const HomeScreen = () => {
+    const [activeCategoryId, setActiveCategoryId] = useState(null);
   return (
     <SafeAreaView style={{paddingTop: Constants.statusBarHeight, flex: 1}}>
         <ScrollView style={{
@@ -55,6 +57,7 @@ const HomeScreen = () => {
                 <Text style={{color: colors.white, fontSize: SPACING*3.5, fontWeight: "600"}}>Find the best coffee for you</Text>
             </View>
             <SearchField />
+            <Categories onChange={(id) => setActiveCategoryId(id)} />
         </ScrollView>
     </SafeAreaView>
   )
